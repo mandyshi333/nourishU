@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who We Are — NourishU</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #F2619C;
+    --yellow: #EDE986;
+    --blue: #93ABD9;
+    --lavender: #e7bef8;
+    --deep: #4a2060;
+    --cream: #fdf9f0;
+    --pink-dark: #d94d87;
+    --text: #3d1f55;
+    --text-light: #7a6090;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.6rem 4rem;
+    background: rgba(253,249,240,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1.5px solid rgba(242,97,156,0.15);
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+  .nav-links a {
+    text-decoration: none; color: var(--text);
+    font-weight: 500; font-size: 0.95rem;
+    position: relative; transition: color 0.2s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+    height: 2px; background: var(--pink);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease;
+  }
+  .nav-links a:hover { color: var(--pink); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-links a.active { color: var(--pink); }
+  .nav-links a.active::after { transform: scaleX(1); }
+  .nav-cta {
+    background: var(--pink); color: white !important;
+    padding: 0.6rem 1.4rem; border-radius: 2rem; font-weight: 600 !important;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--pink-dark) !important; transform: translateY(-1px); }
+  .nav-cta::after { display: none !important; }
+  .hamburger { display: none; }
+
+  /* ── SHARED ── */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--pink); color: white;
+    padding: 0.9rem 2rem; border-radius: 3rem;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 24px rgba(242,97,156,0.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(242,97,156,0.45); }
+
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent; color: var(--deep);
+    padding: 0.9rem 2rem; border-radius: 3rem;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    border: 2px solid rgba(74,32,96,0.25);
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--pink); color: var(--pink); transform: translateY(-2px); }
+
+  .section-tag {
+    display: inline-block; font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink);
+    margin-bottom: 1rem; position: relative; padding-left: 1.5rem;
+  }
+  .section-tag::before {
+    content: ''; position: absolute; left: 0; top: 50%;
+    transform: translateY(-50%); width: 1rem; height: 2px; background: var(--pink);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900; letter-spacing: -0.03em; line-height: 1.1;
+    margin-bottom: 1.5rem; color: var(--deep);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade { animation: fadeUp 0.7s ease both; }
+  .fade-2 { animation: fadeUp 0.7s 0.12s ease both; }
+  .fade-3 { animation: fadeUp 0.7s 0.24s ease both; }
+  .fade-4 { animation: fadeUp 0.7s 0.36s ease both; }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    min-height: 52vh;
+    display: flex; align-items: flex-end;
+    padding: 10rem 4rem 5rem;
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #5a1f7a 0%, #3d1255 60%, #2e0d45 100%);
+  }
+
+  .page-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 70% at 100% 0%, rgba(242,97,156,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 0% 100%, rgba(147,171,217,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 40% at 50% 80%, rgba(237,233,134,0.12) 0%, transparent 60%);
+  }
+
+  .hero-blob { position: absolute; border-radius: 50%; filter: blur(70px); animation: float 8s ease-in-out infinite; }
+  .blob1 { width: 380px; height: 380px; background: rgba(242,97,156,0.15); top: -60px; right: 8%; }
+  .blob2 { width: 240px; height: 240px; background: rgba(231,190,248,0.2); bottom: 5%; left: 5%; animation-delay: 3s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.03); }
+  }
+
+  .page-hero-inner { position: relative; z-index: 1; max-width: 780px; }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.82rem; color: rgba(255,255,255,0.5);
+    margin-bottom: 1.5rem;
+  }
+  .breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--yellow); }
+  .breadcrumb span { color: rgba(255,255,255,0.3); }
+
+  .page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 900; line-height: 1.05;
+    letter-spacing: -0.03em; color: white;
+    margin-bottom: 1.2rem;
+  }
+  .page-hero h1 em { font-style: italic; color: var(--pink); }
+
+  .page-hero p {
+    font-size: 1.15rem; font-weight: 300; line-height: 1.75;
+    color: rgba(255,255,255,0.7); max-width: 600px;
+  }
+
+  /* ── MISSION STRIP ── */
+  .mission-strip {
+    background: var(--pink); padding: 1.6rem 4rem;
+    display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;
+  }
+  .mission-strip p {
+    color: white; font-family: 'Fraunces', serif;
+    font-style: italic; font-size: 1.25rem; flex: 1; min-width: 220px;
+  }
+  .mission-pillars {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .mp {
+    background: rgba(255,255,255,0.18); color: white;
+    padding: 0.35rem 1rem; border-radius: 2rem;
+    font-size: 0.82rem; font-weight: 600; white-space: nowrap;
+  }
+
+  /* ── SECTIONS ── */
+  .content-section { padding: 6rem 4rem; }
+  .content-section.alt { background: white; }
+  .content-section.plum {
+    background: linear-gradient(135deg, #5a1f7a 0%, #3d1255 100%);
+    color: white;
+  }
+  .content-section.plum h2 { color: white; }
+  .content-section.plum p { color: rgba(255,255,255,0.72); }
+
+  /* ── THE PROBLEM ── */
+  .problem-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: start; margin-top: 3rem;
+  }
+  .problem-text p {
+    color: var(--text-light); line-height: 1.85; font-size: 1.05rem;
+    margin-bottom: 1.3rem;
+  }
+  .problem-text p strong { color: var(--deep); font-weight: 600; }
+
+  .stat-stack { display: grid; gap: 1.2rem; }
+
+  .big-stat-card {
+    border-radius: 1.4rem; padding: 2rem 2.2rem;
+    position: relative; overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .big-stat-card:hover { transform: translateY(-4px); }
+  .big-stat-card.s-pink { background: var(--pink); color: white; }
+  .big-stat-card.s-yellow { background: var(--yellow); }
+  .big-stat-card.s-lav { background: var(--lavender); }
+  .big-stat-card.s-blue { background: var(--blue); color: white; }
+
+  .big-stat-card .bsnum {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 900; line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .big-stat-card .bslabel { font-size: 0.92rem; font-weight: 500; opacity: 0.8; line-height: 1.4; }
+  .big-stat-card .bs-icon {
+    position: absolute; right: 1.8rem; top: 1.8rem;
+    font-size: 2rem; opacity: 0.25;
+  }
+
+  /* ── CAUSES ── */
+  .causes-intro p { color: var(--text-light); line-height: 1.8; font-size: 1.05rem; max-width: 640px; margin-top: 0.5rem; }
+
+  .causes-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+
+  .cause-card {
+    border-radius: 1.4rem; padding: 2.2rem;
+    border: 1.5px solid rgba(74,32,96,0.1);
+    background: var(--cream);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .cause-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+  .cause-card.c1::before { background: var(--pink); }
+  .cause-card.c2::before { background: var(--blue); }
+  .cause-card.c3::before { background: var(--yellow); }
+  .cause-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(74,32,96,0.1); }
+
+  .cause-icon { font-size: 2.2rem; margin-bottom: 1.2rem; }
+  .cause-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--deep); margin-bottom: 0.8rem; }
+  .cause-card p { font-size: 0.92rem; color: var(--text-light); line-height: 1.7; margin-bottom: 0.8rem; }
+  .cause-card ul { padding-left: 1.2rem; display: grid; gap: 0.4rem; }
+  .cause-card ul li { font-size: 0.88rem; color: var(--text-light); line-height: 1.5; }
+
+  /* ── MALNUTRITION EFFECTS ── */
+  .effects-intro p { color: rgba(255,255,255,0.7); line-height: 1.8; font-size: 1.05rem; max-width: 640px; margin-top: 0.5rem; }
+
+  .effects-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem; margin-top: 3rem;
+  }
+
+  .effect-row {
+    display: flex; align-items: flex-start; gap: 1.2rem;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1.1rem; padding: 1.6rem;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .effect-row:hover { background: rgba(255,255,255,0.12); transform: translateX(4px); }
+
+  .effect-icon-wrap {
+    width: 46px; height: 46px; border-radius: 0.8rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+  }
+  .ei-pink { background: rgba(242,97,156,0.25); }
+  .ei-yellow { background: rgba(237,233,134,0.2); }
+  .ei-blue { background: rgba(147,171,217,0.2); }
+  .ei-lav { background: rgba(231,190,248,0.2); }
+
+  .effect-row h4 { font-size: 1rem; font-weight: 700; color: white; margin-bottom: 0.3rem; }
+  .effect-row p { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  /* ── WHAT WE DO ── */
+  .what-intro p { color: var(--text-light); line-height: 1.8; font-size: 1.05rem; max-width: 640px; margin-top: 0.5rem; }
+
+  .pillars { display: grid; gap: 2rem; margin-top: 3rem; }
+
+  .pillar {
+    display: grid; grid-template-columns: auto 1fr; gap: 2rem;
+    align-items: start; padding: 2.5rem;
+    border-radius: 1.4rem; background: var(--cream);
+    border: 1.5px solid rgba(74,32,96,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .pillar:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(74,32,96,0.08); }
+
+  .pillar-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; font-weight: 900; line-height: 1;
+    opacity: 0.12; color: var(--deep); user-select: none;
+    min-width: 3rem; text-align: center;
+  }
+
+  .pillar-body h3 {
+    font-size: 1.2rem; font-weight: 700; color: var(--deep);
+    margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.6rem;
+  }
+  .pillar-body h3 .tag {
+    font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.7rem;
+    border-radius: 2rem; text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .tag-pink { background: rgba(242,97,156,0.12); color: var(--pink-dark); }
+  .tag-blue { background: rgba(147,171,217,0.2); color: #2d5ba8; }
+  .tag-yellow { background: rgba(237,233,134,0.45); color: #6a6000; }
+  .tag-lav { background: rgba(231,190,248,0.4); color: #7030b0; }
+
+  .pillar-body p { color: var(--text-light); font-size: 0.97rem; line-height: 1.75; margin-bottom: 1rem; }
+
+  .pillar-details { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .det {
+    font-size: 0.8rem; font-weight: 500; padding: 0.3rem 0.9rem;
+    border-radius: 2rem; background: white;
+    border: 1px solid rgba(74,32,96,0.1);
+    color: var(--text-light);
+  }
+
+  /* ── QUOTE BAND ── */
+  .quote-band {
+    background: var(--yellow); padding: 5rem 4rem;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .quote-band::before {
+    content: '"'; position: absolute; top: -1rem; left: 3rem;
+    font-family: 'Playfair Display', serif; font-size: 14rem;
+    color: rgba(74,32,96,0.07); line-height: 1; pointer-events: none;
+  }
+  blockquote {
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-size: clamp(1.4rem, 3vw, 2rem); color: var(--deep);
+    max-width: 720px; margin: 0 auto 1.5rem; line-height: 1.5;
+    position: relative; z-index: 1;
+  }
+  .quote-attr { font-size: 0.88rem; font-weight: 600; color: var(--text-light); letter-spacing: 0.05em; text-transform: uppercase; }
+
+  /* ── OUR STORY ── */
+  .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3rem; }
+  .story-text p { color: var(--text-light); line-height: 1.85; font-size: 1.05rem; margin-bottom: 1.3rem; }
+  .story-text p strong { color: var(--deep); }
+
+  .story-visual {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .story-tile {
+    border-radius: 1.2rem; padding: 2rem; text-align: center;
+    transition: transform 0.3s;
+  }
+  .story-tile:hover { transform: scale(1.03); }
+  .story-tile:nth-child(1) { background: rgba(242,97,156,0.1); margin-top: 1.5rem; }
+  .story-tile:nth-child(2) { background: var(--yellow); }
+  .story-tile:nth-child(3) { background: var(--lavender); }
+  .story-tile:nth-child(4) { background: rgba(147,171,217,0.2); margin-top: -1.5rem; }
+  .story-tile .st-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .story-tile p { font-size: 0.82rem; font-weight: 600; color: var(--deep); }
+
+  /* ── VALUES ── */
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .value-card {
+    border-radius: 1.2rem; padding: 2rem;
+    background: white; border: 1.5px solid rgba(74,32,96,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .value-card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(74,32,96,0.09); }
+  .value-dot {
+    width: 10px; height: 10px; border-radius: 50%; margin-bottom: 1.2rem;
+  }
+  .value-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--deep); margin-bottom: 0.5rem; }
+  .value-card p { font-size: 0.88rem; color: var(--text-light); line-height: 1.65; }
+
+  /* ── TEAM ── */
+  .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .team-card {
+    border-radius: 1.4rem; padding: 2rem; text-align: center;
+    background: var(--cream); border: 1.5px solid rgba(74,32,96,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .team-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(74,32,96,0.1); }
+  .team-avatar {
+    width: 70px; height: 70px; border-radius: 50%;
+    margin: 0 auto 1rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+  }
+  .team-card h3 { font-size: 1rem; font-weight: 700; color: var(--deep); margin-bottom: 0.2rem; }
+  .team-card .role { font-size: 0.8rem; color: var(--pink); font-weight: 600; margin-bottom: 0.6rem; }
+  .team-card p { font-size: 0.82rem; color: var(--text-light); line-height: 1.55; }
+
+  /* ── CTA BAND ── */
+  .cta-band {
+    background: linear-gradient(135deg, #5a1f7a 0%, #3d1255 100%);
+    padding: 6rem 4rem; text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-band::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 100%, rgba(242,97,156,0.2) 0%, transparent 65%);
+  }
+  .cta-band h2 { color: white; position: relative; z-index: 1; margin-bottom: 1rem; }
+  .cta-band p { color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.7; position: relative; z-index: 1; }
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+  .btn-light {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: white; color: var(--deep);
+    padding: 0.9rem 2rem; border-radius: 3rem;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+  .btn-light:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent; color: white;
+    padding: 0.9rem 2rem; border-radius: 3rem;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    border: 2px solid rgba(255,255,255,0.35);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: linear-gradient(135deg, #5a1f7a 0%, #3a1058 100%);
+    color: white; padding: 5rem 4rem 2.5rem;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem;
+    padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 2.5rem;
+  }
+  .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.7; margin-top: 0.8rem; max-width: 260px; }
+  .footer-slogan { font-family: 'Fraunces', serif; font-style: italic; font-size: 1rem; color: var(--yellow); margin-top: 0.3rem; }
+  .footer-col h4 { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 1.2rem; }
+  .footer-col ul { list-style: none; display: grid; gap: 0.7rem; }
+  .footer-col ul a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.92rem; transition: color 0.2s; }
+  .footer-col ul a:hover { color: var(--pink); }
+  .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.85rem; }
+  .social-links { display: flex; gap: 0.8rem; }
+  .social-link {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 0.95rem; transition: background 0.2s, transform 0.2s;
+  }
+  .social-link:hover { background: var(--pink); transform: translateY(-2px); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hamburger { display: block; background: none; border: none; cursor: pointer; font-size: 1.4rem; color: var(--deep); }
+    .page-hero { padding: 8rem 1.5rem 3.5rem; }
+    .content-section { padding: 4.5rem 1.5rem; }
+    .problem-grid, .story-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .causes-grid, .values-grid { grid-template-columns: 1fr; }
+    .effects-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    .pillars .pillar { grid-template-columns: 1fr; gap: 0.5rem; }
+    .pillar-num { font-size: 2.5rem; text-align: left; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .mission-strip { padding: 1.5rem; }
+    .cta-band { padding: 4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="nourishu.html" style="text-decoration:none; display:flex; align-items:center;">
+    <img src="white.png" alt="NourishU" style="height:4.5rem; width:auto; mix-blend-mode:multiply; display:block;">
+  </a>
+  <ul class="nav-links">
+    <li><a href="who-we-are.html" class="active">Who We Are</a></li>
+    <li><a href="nourishu.html#programs">Programs</a></li>
+    <li><a href="nourishu.html#schools">Schools</a></li>
+    <li><a href="nourishu.html#partners">Partners</a></li>
+    <li><a href="nourishu.html#volunteer">Volunteer</a></li>
+    <li><a href="nourishu.html#volunteer" class="nav-cta">Get Involved</a></li>
+  </ul>
+  <button class="hamburger">☰</button>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb fade">
+      <a href="nourishu.html">Home</a>
+      <span>›</span>
+      <span style="color:rgba(255,255,255,0.75)">Who We Are</span>
+    </div>
+    <h1 class="fade-2">We exist because<br>students shouldn't have to<br><em>go hungry.</em></h1>
+    <p class="fade-3">NourishU is a Sydney-based not-for-profit tackling the hidden crisis of student food insecurity — one campus, one meal, one community at a time.</p>
+  </div>
+</div>
+
+<!-- MISSION STRIP -->
+<div class="mission-strip">
+  <p>"Fuelling your future — because a full mind starts with a full plate."</p>
+  <div class="mission-pillars">
+    <span class="mp">Free Meals</span>
+    <span class="mp">Food Pantries</span>
+    <span class="mp">Education</span>
+    <span class="mp">Job Pathways</span>
+    <span class="mp">Community</span>
+  </div>
+</div>
+
+<!-- THE PROBLEM: MALNUTRITION AMONG STUDENTS -->
+<div class="content-section">
+  <div class="section-tag">The Problem</div>
+  <h2>Student hunger is a<br>hidden crisis</h2>
+  <div class="problem-grid">
+    <div class="problem-text">
+      <p>Across Australia's universities, a quiet crisis is unfolding. <strong>1 in 3 students</strong> experience food insecurity at some point during their degree — skipping meals, eating less than they need, or going entire days without food.</p>
+      <p>It's often invisible. Students don't talk about it. They power through lectures on empty stomachs, hide hunger behind the pressure to appear fine, and sacrifice nutrition to cover rent, transport, or textbooks.</p>
+      <p>This isn't a personal failing. It's a structural problem. <strong>The cost of living in Sydney has surged</strong>, casual work is unreliable, student allowances haven't kept pace, and many students — particularly international students — have no safety net at all.</p>
+      <p>And the consequences go far beyond feeling hungry. Malnutrition during university years affects concentration, mental health, academic outcomes, and long-term physical health. When students can't eat properly, they can't thrive. That's why NourishU exists.</p>
+    </div>
+    <div class="stat-stack">
+      <div class="big-stat-card s-pink">
+        <div class="bs-icon">🎓</div>
+        <div class="bsnum">1 in 3</div>
+        <div class="bslabel">university students in Australia experience food insecurity</div>
+      </div>
+      <div class="big-stat-card s-yellow">
+        <div class="bs-icon">💸</div>
+        <div class="bsnum">62%</div>
+        <div class="bslabel">of food-insecure students say cost of living is the primary cause</div>
+      </div>
+      <div class="big-stat-card s-lav">
+        <div class="bs-icon">🤫</div>
+        <div class="bsnum">4 in 5</div>
+        <div class="bslabel">students experiencing hunger don't seek help due to stigma</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY IT HAPPENS -->
+<div class="content-section alt">
+  <div class="causes-intro">
+    <div class="section-tag">Root Causes</div>
+    <h2>Three forces driving<br>student hunger</h2>
+    <p>Malnutrition among university students isn't random. It's driven by a set of interconnected pressures that, together, make it very hard for students to consistently eat well.</p>
+  </div>
+  <div class="causes-grid">
+    <div class="cause-card c1">
+      <div class="cause-icon">💸</div>
+      <h3>Cost of Living Pressure</h3>
+      <p>Sydney is one of the most expensive cities in the world. For students juggling rent, transport, study materials, and tuition, food is often the first thing cut from the budget.</p>
+      <ul>
+        <li>Average Sydney rent for a student: $300–$500/week</li>
+        <li>Average student income (Youth Allowance): ~$360/fortnight</li>
+        <li>Grocery costs have risen sharply since 2022</li>
+        <li>International students often ineligible for government support</li>
+      </ul>
+    </div>
+    <div class="cause-card c2">
+      <div class="cause-icon">🧠</div>
+      <h3>Stress & Mental Load</h3>
+      <p>Academic pressure, social isolation, and anxiety make it harder for students to prioritise eating — and hunger makes all of those things worse. It's a cycle that's difficult to break alone.</p>
+      <ul>
+        <li>High academic workloads leave little time for meal prep</li>
+        <li>Stress suppresses appetite and disrupts eating routines</li>
+        <li>Mental health struggles often co-occur with food insecurity</li>
+        <li>Shame and stigma prevent students from seeking support</li>
+      </ul>
+    </div>
+    <div class="cause-card c3">
+      <div class="cause-icon">📖</div>
+      <h3>Lack of Nutritional Knowledge</h3>
+      <p>Many students arrive at university having never cooked for themselves. Without practical knowledge of budget cooking and nutrition, eating well feels out of reach — even when money is available.</p>
+      <ul>
+        <li>Reliance on expensive takeaway or processed food</li>
+        <li>No education on meal planning or batch cooking</li>
+        <li>Low awareness of available campus support services</li>
+        <li>Cultural food barriers for international students</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- EFFECTS OF MALNUTRITION -->
+<div class="content-section plum">
+  <div class="effects-intro">
+    <div class="section-tag" style="color:var(--yellow)">The Impact</div>
+    <h2>What malnutrition<br>actually does</h2>
+    <p>Poor nutrition during university isn't just uncomfortable — it has real, measurable effects on students' ability to learn, function, and build a future.</p>
+  </div>
+  <div class="effects-grid">
+    <div class="effect-row">
+      <div class="effect-icon-wrap ei-pink">🧠</div>
+      <div>
+        <h4>Cognitive Decline</h4>
+        <p>Insufficient nutrition impairs memory, concentration, and processing speed — directly undermining academic performance at the worst possible time.</p>
+      </div>
+    </div>
+    <div class="effect-row">
+      <div class="effect-icon-wrap ei-yellow">😟</div>
+      <div>
+        <h4>Mental Health</h4>
+        <p>Food insecurity is strongly linked to anxiety, depression, and feelings of hopelessness. Students who are hungry are significantly more likely to experience psychological distress.</p>
+      </div>
+    </div>
+    <div class="effect-row">
+      <div class="effect-icon-wrap ei-blue">📉</div>
+      <div>
+        <h4>Academic Outcomes</h4>
+        <p>Students who experience food insecurity are more likely to fail units, take longer to graduate, or drop out entirely — compounding the very financial stress that caused the problem.</p>
+      </div>
+    </div>
+    <div class="effect-row">
+      <div class="effect-icon-wrap ei-lav">🤒</div>
+      <div>
+        <h4>Physical Health</h4>
+        <p>Skipping meals and poor diet weaken the immune system, reduce energy, and increase risk of long-term conditions — effects that don't disappear after graduation.</p>
+      </div>
+    </div>
+    <div class="effect-row">
+      <div class="effect-icon-wrap ei-pink">🏫</div>
+      <div>
+        <h4>Social Withdrawal</h4>
+        <p>Hunger and shame around food insecurity cause many students to isolate — missing out on study groups, social connections, and the full university experience.</p>
+      </div>
+    </div>
+    <div class="effect-row">
+      <div class="effect-icon-wrap ei-yellow">🔮</div>
+      <div>
+        <h4>Future Opportunity</h4>
+        <p>Universities are where futures are built. When students can't engage fully, the ripple effects extend to their careers, earning potential, and lifelong wellbeing.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="quote-band">
+  <blockquote>"I used to skip lunch so I could afford the bus home. I couldn't focus in lectures. I felt too ashamed to tell anyone. Then I found NourishU."</blockquote>
+  <p class="quote-attr">— A NourishU student, University of Sydney</p>
+</div>
+
+<!-- WHAT WE DO -->
+<div class="content-section">
+  <div class="what-intro">
+    <div class="section-tag">Our Response</div>
+    <h2>What NourishU does<br>about it</h2>
+    <p>We take a holistic approach — addressing immediate hunger, the knowledge gap, and the structural barriers that keep students from eating well. Everything we do is free, stigma-free, and built around students' real lives.</p>
+  </div>
+  <div class="pillars">
+
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <div class="pillar-body">
+        <h3>Free Hot Meal Program <span class="tag tag-pink">Flagship</span></h3>
+        <p>Our most immediate intervention. We partner with local Sydney restaurants and caterers to deliver freshly prepared, nutritious, culturally diverse hot meals to students on campus multiple times a week. No ID. No means test. No questions asked. You show up — we feed you.</p>
+        <div class="pillar-details">
+          <span class="det">Multiple days/week</span>
+          <span class="det">All Sydney campuses</span>
+          <span class="det">Culturally diverse menus</span>
+          <span class="det">100% free</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <div class="pillar-body">
+        <h3>Campus Food Pantries <span class="tag tag-blue">Access</span></h3>
+        <p>Stocked walk-in pantry hubs at each of our partner campuses, filled with dry goods, fresh produce, snacks, and hygiene essentials. Open before, between, and after classes — so students can grab what they need without making a special trip or an appointment.</p>
+        <div class="pillar-details">
+          <span class="det">4 Sydney locations</span>
+          <span class="det">Open daily</span>
+          <span class="det">Fresh & dry goods</span>
+          <span class="det">Drop-in, no booking</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <div class="pillar-body">
+        <h3>Nutrition Education Workshops <span class="tag tag-yellow">Education</span></h3>
+        <p>Practical, hands-on workshops run by qualified nutritionists and trained peer mentors. Students learn budget meal planning, batch cooking, reading nutrition labels, and how to eat well on a tight income. Tackling the root cause — not just the symptom.</p>
+        <div class="pillar-details">
+          <span class="det">Weekly workshops</span>
+          <span class="det">Budget cooking focus</span>
+          <span class="det">Peer-led sessions</span>
+          <span class="det">Recipe resources</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num">04</div>
+      <div class="pillar-body">
+        <h3>Job Connect Program <span class="tag tag-lav">Employment</span></h3>
+        <p>We work with our partner food businesses to create flexible part-time job opportunities exclusively for NourishU students. This addresses the financial root cause — helping students build income stability alongside their studies, while supporting local Sydney businesses they already know and trust.</p>
+        <div class="pillar-details">
+          <span class="det">80+ business partners</span>
+          <span class="det">Flexible hours</span>
+          <span class="det">Study-friendly rosters</span>
+          <span class="det">320+ jobs created</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num">05</div>
+      <div class="pillar-body">
+        <h3>Emergency Food Packs <span class="tag tag-pink">Crisis Support</span></h3>
+        <p>For students in immediate crisis, we provide discreet 3-day emergency food packs delivered directly to their campus — no lengthy application process, no judgment. A lifeline for students who need help right now.</p>
+        <div class="pillar-details">
+          <span class="det">Same-week delivery</span>
+          <span class="det">Discreet & private</span>
+          <span class="det">3-day supply</span>
+          <span class="det">No means test</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- OUR STORY -->
+<div class="content-section alt">
+  <div class="section-tag">Our Story</div>
+  <h2>How NourishU started</h2>
+  <div class="story-grid">
+    <div class="story-text">
+      <p>NourishU began in 2021 when a group of University of Sydney students noticed something they couldn't ignore: their classmates were skipping meals. Not occasionally — regularly. Friends were pretending they'd already eaten. Study groups were losing focus by early afternoon. The signs were everywhere, once you knew to look.</p>
+      <p>What started as a small weekly meal run from a borrowed campus kitchen grew into something much bigger. Local cafés and restaurants got involved. Volunteers showed up. Word spread. <strong>By 2023, we were operating across four Sydney campuses</strong>, had launched our pantry network, and had placed over 200 students in part-time jobs with our food business partners.</p>
+      <p>Today, NourishU is expanding — but our mission hasn't changed. We believe every student deserves to focus on their future without hunger getting in the way. And we believe that communities — students, businesses, universities — are stronger when they look after each other.</p>
+    </div>
+    <div class="story-visual">
+      <div class="story-tile"><div class="st-icon">🍳</div><p>Started with one weekly meal run</p></div>
+      <div class="story-tile"><div class="st-icon">📅</div><p>Founded 2021, USyd campus</p></div>
+      <div class="story-tile"><div class="st-icon">🌏</div><p>Now across 4 Sydney campuses</p></div>
+      <div class="story-tile"><div class="st-icon">💛</div><p>100% student & volunteer run</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- VALUES -->
+<div class="content-section">
+  <div class="section-tag">Our Values</div>
+  <h2>What we believe</h2>
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-dot" style="background:var(--pink)"></div>
+      <h3>Dignity First</h3>
+      <p>No means tests, no judgment, no bureaucracy. Every student who needs food gets food — with their dignity intact.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-dot" style="background:var(--blue)"></div>
+      <h3>Community Over Charity</h3>
+      <p>We don't hand food down — we build communities around it. Students, businesses, and universities are all part of the solution.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-dot" style="background:var(--yellow)"></div>
+      <h3>Tackling Root Causes</h3>
+      <p>Feeding people matters. So does addressing why they're hungry. We work on both — immediate relief and structural change.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-dot" style="background:var(--lavender)"></div>
+      <h3>Stigma-Free</h3>
+      <p>Food insecurity is a structural issue, not a personal failure. We work hard to make seeking support feel normal and easy.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-dot" style="background:var(--pink)"></div>
+      <h3>Student-Led</h3>
+      <p>Our volunteers, coordinators, and advocates are students themselves. We understand the experience because we live it.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-dot" style="background:var(--blue)"></div>
+      <h3>Radical Inclusion</h3>
+      <p>Domestic, international, postgrad, undergrad — if you're a student in need, NourishU is for you. Full stop.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM -->
+<div class="content-section alt">
+  <div class="section-tag">Our Team</div>
+  <h2>The people behind<br>NourishU</h2>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar" style="background:rgba(242,97,156,0.12)">👩</div>
+      <h3>Aisha Mahmood</h3>
+      <div class="role">Founder & Director</div>
+      <p>Public health graduate. Started NourishU after witnessing food insecurity firsthand in her college residential.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:rgba(147,171,217,0.2)">🧑</div>
+      <h3>James Tran</h3>
+      <div class="role">Programs Coordinator</div>
+      <p>Manages meal logistics and campus partnerships across all four Sydney campuses.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:rgba(237,233,134,0.35)">👩</div>
+      <h3>Sofia Reyes</h3>
+      <div class="role">Partnerships Lead</div>
+      <p>Builds and maintains relationships with Sydney's food business community and job connect program.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:rgba(231,190,248,0.35)">🧑</div>
+      <h3>Lachlan Park</h3>
+      <div class="role">Volunteer & Community</div>
+      <p>Coordinates 200+ active volunteers and leads the campus ambassador program across Sydney.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Ready to be part of<br>the solution?</h2>
+  <p>Whether you need support, want to volunteer, or have a business that wants to give back — there's a place for you in the NourishU community.</p>
+  <div class="cta-actions">
+    <a href="nourishu.html#volunteer" class="btn-light">Volunteer with us</a>
+    <a href="nourishu.html#programs" class="btn-ghost">See our programs →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="white.png" alt="NourishU" style="height:4.5rem; width:auto; mix-blend-mode:screen; opacity:0.9;">
+      <div class="footer-slogan">Fuelling your future</div>
+      <p>A not-for-profit dedicated to ending food insecurity among Sydney university students.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="who-we-are.html">Who We Are</a></li>
+        <li><a href="nourishu.html#programs">Programs</a></li>
+        <li><a href="nourishu.html#schools">Schools</a></li>
+        <li><a href="nourishu.html#partners">Partners</a></li>
+        <li><a href="nourishu.html#volunteer">Volunteer</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get Help</h4>
+      <ul>
+        <li><a href="#">Find a Pantry</a></li>
+        <li><a href="#">Meal Schedule</a></li>
+        <li><a href="#">Emergency Packs</a></li>
+        <li><a href="#">Student Resources</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:hello@nourishu.org.au">hello@nourishu.org.au</a></li>
+        <li><a href="mailto:partners@nourishu.org.au">partners@nourishu.org.au</a></li>
+        <li><a href="#">ABN: 00 000 000 000</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 NourishU. All rights reserved. Not-for-profit registered in Australia.</p>
+    <div class="social-links">
+      <a class="social-link" href="#" title="Instagram">📸</a>
+      <a class="social-link" href="#" title="TikTok">🎵</a>
+      <a class="social-link" href="#" title="LinkedIn">💼</a>
+      <a class="social-link" href="#" title="Facebook">📘</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

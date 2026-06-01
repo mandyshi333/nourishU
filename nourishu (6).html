@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NourishU — Fuelling Your Future</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #F2619C;
+    --yellow: #EDE986;
+    --blue: #93ABD9;
+    --lavender: #e7bef8;
+    --deep: #4a2060;       /* deep plum — replaces all black/dark */
+    --deep2: #5c3275;      /* slightly lighter plum */
+    --cream: #fdf9f0;
+    --pink-dark: #d94d87;
+    --text: #3d1f55;       /* warm purple text */
+    --text-light: #7a6090;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── LOGO IMAGE ── */
+  .logo-img {
+    height: 6rem; width: auto;
+    mix-blend-mode: multiply;
+    display: block;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.6rem 4rem;
+    background: rgba(253,249,240,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1.5px solid rgba(242,97,156,0.15);
+  }
+
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none; align-items: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500; font-size: 0.95rem;
+    position: relative; transition: color 0.2s;
+  }
+
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+    height: 2px; background: var(--pink);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  .nav-links a:hover { color: var(--pink); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .nav-cta {
+    background: var(--pink); color: white !important;
+    padding: 0.6rem 1.4rem; border-radius: 2rem;
+    font-weight: 600 !important;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--pink-dark) !important; transform: translateY(-1px); }
+  .nav-cta::after { display: none !important; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative; overflow: hidden;
+    background: var(--cream);
+  }
+
+  .hero-inner {
+    position: relative; z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-visual {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  /* ── VIDEO SECTION ── */
+  .video-section {
+    background: linear-gradient(135deg, #5a1f7a 0%, #3d1255 100%);
+    padding: 7rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .video-section::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 70% at 80% 50%, rgba(242,97,156,0.18) 0%, transparent 60%);
+  }
+  .video-section-inner {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .video-text { color: white; }
+  .video-text .section-tag { color: var(--yellow); }
+  .video-text .section-tag::before { background: var(--yellow); }
+  .video-text h2 { color: white; margin-bottom: 1rem; }
+  .video-text p { color: rgba(255,255,255,0.7); line-height: 1.8; font-size: 1.05rem; margin-bottom: 2rem; }
+  .video-frame {
+    border-radius: 1.4rem; overflow: hidden;
+    aspect-ratio: 16/9;
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+  }
+  .video-frame video, .video-frame iframe {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .video-placeholder {
+    width: 100%; height: 100%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 1rem;
+    padding: 3rem;
+    background: rgba(255,255,255,0.04); aspect-ratio: 16/9;
+  }
+  .play-btn {
+    width: 70px; height: 70px; border-radius: 50%;
+    background: var(--pink); display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; cursor: pointer;
+    box-shadow: 0 8px 32px rgba(242,97,156,0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .play-btn:hover { transform: scale(1.08); box-shadow: 0 12px 40px rgba(242,97,156,0.6); }
+  .video-placeholder p { color: rgba(255,255,255,0.45); font-size: 0.88rem; text-align: center; }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 80% 50%, rgba(147,171,217,0.22) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 15% 80%, rgba(231,190,248,0.3) 0%, transparent 65%),
+      radial-gradient(ellipse 35% 50% at 90% 90%, rgba(237,233,134,0.2) 0%, transparent 60%);
+  }
+
+  .hero-blob { position: absolute; border-radius: 50%; filter: blur(70px); animation: float 8s ease-in-out infinite; }
+  .blob1 { width: 420px; height: 420px; background: rgba(242,97,156,0.13); top: -80px; right: 5%; animation-delay: 0s; }
+  .blob2 { width: 280px; height: 280px; background: rgba(237,233,134,0.28); bottom: 10%; right: 20%; animation-delay: 2.5s; }
+  .blob3 { width: 200px; height: 200px; background: rgba(231,190,248,0.35); top: 30%; left: -5%; animation-delay: 4s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-25px) scale(1.04); }
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 660px; }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--yellow); color: var(--text);
+    padding: 0.35rem 1rem; border-radius: 2rem;
+    font-size: 0.82rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-tag::before { content: '✦'; font-size: 0.7rem; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.2rem, 6vw, 5.5rem);
+    line-height: 1.05; font-weight: 900;
+    letter-spacing: -0.03em; margin-bottom: 1.5rem;
+    color: var(--deep);
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  h1 em { font-style: italic; color: var(--pink); }
+
+  .hero-sub {
+    font-size: 1.15rem; font-weight: 300; line-height: 1.7;
+    color: var(--text-light); max-width: 500px; margin-bottom: 2.5rem;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.7s 0.3s ease both; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--pink); color: white;
+    padding: 0.9rem 2rem; border-radius: 3rem;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 24px rgba(242,97,156,0.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(242,97,156,0.45); }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent; color: var(--deep);
+    padding: 0.9rem 2rem; border-radius: 3rem;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    border: 2px solid rgba(74,32,96,0.25);
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--pink); color: var(--pink); transform: translateY(-2px); }
+
+  .hero-visual {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+
+  .stat-card {
+    background: white; border-radius: 1.2rem; padding: 1.5rem;
+    box-shadow: 0 4px 30px rgba(74,32,96,0.08);
+    text-align: center; min-width: 130px; transition: transform 0.3s;
+  }
+  .stat-card:hover { transform: translateY(-4px); }
+  .stat-card:nth-child(2) { margin-top: 2rem; background: var(--pink); color: white; }
+  .stat-card:nth-child(3) { margin-top: -1rem; background: var(--yellow); }
+  .stat-card:nth-child(4) { margin-top: 1rem; background: var(--lavender); }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900; line-height: 1; margin-bottom: 0.3rem;
+  }
+  .stat-label { font-size: 0.78rem; font-weight: 500; opacity: 0.75; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 7rem 4rem; }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--pink);
+    margin-bottom: 1rem; position: relative; padding-left: 1.5rem;
+  }
+  .section-tag::before {
+    content: ''; position: absolute; left: 0; top: 50%;
+    transform: translateY(-50%); width: 1rem; height: 2px; background: var(--pink);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900; letter-spacing: -0.03em; line-height: 1.1;
+    margin-bottom: 1.5rem; color: var(--deep);
+  }
+
+  /* ── WHO WE ARE ── */
+  #who {
+    background: linear-gradient(135deg, #5a1f7a 0%, #3d1255 60%, #2e0d45 100%);
+    color: white; position: relative; overflow: hidden;
+  }
+  #who::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 50% 80% at 100% 0%, rgba(242,97,156,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 0% 100%, rgba(147,171,217,0.15) 0%, transparent 60%);
+  }
+
+  .who-inner {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  }
+  #who h2 { color: white; }
+  .who-text p { color: rgba(255,255,255,0.72); line-height: 1.8; font-size: 1.05rem; margin-bottom: 1.2rem; }
+  .who-text p strong { color: var(--yellow); font-weight: 600; }
+
+  .mission-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+  .pill { padding: 0.45rem 1.1rem; border-radius: 2rem; font-size: 0.85rem; font-weight: 500; border: 1.5px solid; }
+  .pill-pink { background: rgba(242,97,156,0.15); border-color: var(--pink); color: var(--pink); }
+  .pill-yellow { background: rgba(237,233,134,0.12); border-color: var(--yellow); color: var(--yellow); }
+  .pill-blue { background: rgba(147,171,217,0.15); border-color: var(--blue); color: var(--blue); }
+  .pill-lav { background: rgba(231,190,248,0.15); border-color: var(--lavender); color: var(--lavender); }
+
+  .who-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .who-card {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1.2rem; padding: 1.8rem;
+    transition: transform 0.3s, background 0.3s;
+  }
+  .who-card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.12); }
+  .who-card-icon {
+    width: 44px; height: 44px; border-radius: 0.8rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1rem;
+  }
+  .icon-pink { background: rgba(242,97,156,0.2); }
+  .icon-yellow { background: rgba(237,233,134,0.2); }
+  .icon-blue { background: rgba(147,171,217,0.2); }
+  .icon-lav { background: rgba(231,190,248,0.2); }
+  .who-card h3 { font-weight: 600; font-size: 1rem; color: white; margin-bottom: 0.5rem; }
+  .who-card p { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  /* ── IMPACT BAND ── */
+  .impact-band {
+    background: var(--pink); padding: 3rem 4rem;
+    display: flex; gap: 1rem; align-items: center; justify-content: center; flex-wrap: wrap;
+  }
+  .impact-stat { text-align: center; color: white; padding: 1rem 3rem; border-right: 1px solid rgba(255,255,255,0.3); }
+  .impact-stat:last-child { border-right: none; }
+  .impact-stat .num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; line-height: 1; }
+  .impact-stat .lbl { font-size: 0.85rem; font-weight: 500; opacity: 0.85; margin-top: 0.3rem; }
+
+  /* ── PROGRAMS ── */
+  #programs { background: var(--cream); }
+  .programs-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1.5rem;
+  }
+  .programs-header p { color: var(--text-light); max-width: 380px; line-height: 1.7; }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1.2rem;
+  }
+  .prog-card {
+    border-radius: 1.4rem; padding: 2.5rem;
+    position: relative; overflow: hidden; transition: transform 0.3s;
+  }
+  .prog-card:hover { transform: scale(1.02); }
+  .prog-card.featured { grid-row: span 2; background: linear-gradient(145deg,#5a1f7a,#3d1255); color: white; }
+  .prog-card.card-yellow { background: var(--yellow); }
+  .prog-card.card-blue { background: var(--blue); color: white; }
+  .prog-card.card-lav { background: var(--lavender); }
+  .prog-card.card-pink { background: var(--pink); color: white; }
+  .prog-icon { font-size: 2.5rem; margin-bottom: 1.2rem; }
+  .prog-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.6rem; color: inherit; }
+  .prog-card p { font-size: 0.9rem; line-height: 1.65; opacity: 0.8; }
+  .prog-card.featured h3 { font-size: 1.8rem; }
+  .prog-badge {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: var(--pink); color: white;
+    font-size: 0.7rem; font-weight: 700; padding: 0.3rem 0.8rem;
+    border-radius: 2rem; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+
+  /* ── SCHOOLS ── */
+  #schools { background: white; }
+  .schools-intro { max-width: 600px; margin-bottom: 1rem; }
+  .schools-intro p { color: var(--text-light); line-height: 1.75; font-size: 1.05rem; }
+
+  /* Sydney spotlight banner */
+  .sydney-banner {
+    display: flex; align-items: center; gap: 1rem;
+    background: linear-gradient(90deg, rgba(242,97,156,0.12), rgba(231,190,248,0.15));
+    border: 1.5px solid rgba(242,97,156,0.25);
+    border-radius: 1rem; padding: 1rem 1.5rem;
+    margin-bottom: 3rem; flex-wrap: wrap;
+  }
+  .sydney-badge {
+    background: var(--pink); color: white;
+    font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.9rem;
+    border-radius: 2rem; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .sydney-banner p { font-size: 0.92rem; color: var(--text); font-weight: 500; }
+
+  .schools-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin-bottom: 4rem;
+  }
+  .school-card {
+    border-radius: 1.4rem; overflow: hidden;
+    border: 1.5px solid rgba(242,97,156,0.12); background: var(--cream);
+    transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;
+  }
+  .school-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(74,32,96,0.1); }
+  .school-card.coming-soon { opacity: 0.7; filter: grayscale(0.3); }
+
+  .school-card-header {
+    padding: 2rem; display: flex; align-items: center; justify-content: space-between;
+  }
+  .school-avatar {
+    width: 52px; height: 52px; border-radius: 0.8rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+  }
+  .school-status { font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.8rem; border-radius: 2rem; }
+  .status-active { background: rgba(100,220,150,0.2); color: #1f7a46; }
+  .status-coming { background: rgba(147,171,217,0.25); color: #3a6dbd; }
+
+  .school-card-body { padding: 0 2rem 1.8rem; }
+  .school-card-body h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--deep); }
+  .school-card-body .location { font-size: 0.83rem; color: var(--text-light); margin-bottom: 1rem; }
+  .school-services { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .svc-tag { font-size: 0.75rem; padding: 0.25rem 0.7rem; border-radius: 2rem; font-weight: 500; }
+  .svc-pink { background: rgba(242,97,156,0.12); color: var(--pink-dark); }
+  .svc-blue { background: rgba(147,171,217,0.2); color: #2d5ba8; }
+  .svc-lav { background: rgba(231,190,248,0.35); color: #7030b0; }
+  .svc-grey { background: rgba(74,32,96,0.08); color: var(--text-light); }
+
+  /* Sydney section header */
+  .section-area-label {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-light);
+    margin: 2.5rem 0 1rem; padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(74,32,96,0.1);
+  }
+
+  .schools-cta {
+    background: var(--yellow); border-radius: 1.8rem;
+    padding: 3.5rem 4rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+  }
+  .schools-cta h3 { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 900; line-height: 1.2; max-width: 480px; color: var(--deep); }
+
+  /* ── PARTNERS ── */
+  #partners { background: var(--cream); }
+  .partners-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 4rem; align-items: start; }
+  .partners-intro p { color: var(--text-light); line-height: 1.75; font-size: 1.05rem; }
+  .partner-benefits { display: grid; gap: 1rem; }
+  .benefit-row {
+    display: flex; align-items: flex-start; gap: 1rem; padding: 1.2rem;
+    border-radius: 1rem; background: white; transition: transform 0.2s;
+  }
+  .benefit-row:hover { transform: translateX(4px); }
+  .benefit-icon { width: 36px; height: 36px; border-radius: 0.6rem; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .benefit-row h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; color: var(--deep); }
+  .benefit-row p { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; }
+  .partner-logos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .partner-tile {
+    border: 1.5px solid rgba(74,32,96,0.08); border-radius: 1rem; padding: 2rem 1rem;
+    text-align: center; transition: transform 0.2s, box-shadow 0.2s; background: white;
+  }
+  .partner-tile:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(74,32,96,0.08); }
+  .partner-tile .emoji { font-size: 2rem; margin-bottom: 0.5rem; }
+  .partner-tile p { font-size: 0.82rem; font-weight: 600; color: var(--text-light); }
+
+  /* ── VOLUNTEER ── */
+  #volunteer { background: linear-gradient(135deg, rgba(231,190,248,0.2) 0%, rgba(147,171,217,0.15) 100%); }
+  .volunteer-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
+  .vol-text p { color: var(--text-light); line-height: 1.8; font-size: 1.05rem; margin-bottom: 1.5rem; }
+  .vol-roles { display: grid; gap: 1rem; }
+  .role-card {
+    background: white; border-radius: 1.2rem; padding: 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    border-left: 4px solid;
+    box-shadow: 0 2px 16px rgba(74,32,96,0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .role-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(74,32,96,0.12); }
+  .role-card:nth-child(1) { border-color: var(--pink); }
+  .role-card:nth-child(2) { border-color: var(--blue); }
+  .role-card:nth-child(3) { border-color: var(--yellow); }
+  .role-card:nth-child(4) { border-color: var(--lavender); }
+  .role-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .role-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--deep); }
+  .role-card p { font-size: 0.86rem; color: var(--text-light); line-height: 1.5; }
+
+  .vol-form {
+    background: white; border-radius: 1.8rem; padding: 2.5rem;
+    box-shadow: 0 8px 40px rgba(74,32,96,0.1);
+  }
+  .vol-form h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; margin-bottom: 0.5rem; color: var(--deep); }
+  .vol-form > p { color: var(--text-light); font-size: 0.9rem; margin-bottom: 2rem; }
+  .form-row { margin-bottom: 1.2rem; }
+  .form-row label { display: block; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.4rem; }
+  .form-row input, .form-row select, .form-row textarea {
+    width: 100%; padding: 0.75rem 1rem;
+    border: 1.5px solid rgba(74,32,96,0.12); border-radius: 0.8rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    color: var(--deep); background: var(--cream); outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color: var(--pink); background: white; }
+  .form-row textarea { resize: vertical; min-height: 90px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .checkbox-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .checkbox-item {
+    display: flex; align-items: center; gap: 0.4rem;
+    background: var(--cream); padding: 0.4rem 0.9rem;
+    border-radius: 2rem; border: 1.5px solid transparent;
+    cursor: pointer; font-size: 0.84rem; font-weight: 500; color: var(--text);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .checkbox-item:has(input:checked) { border-color: var(--pink); background: rgba(242,97,156,0.08); }
+  .checkbox-item input { accent-color: var(--pink); }
+  .submit-btn {
+    width: 100%; padding: 1rem;
+    background: var(--pink); color: white;
+    border: none; border-radius: 3rem;
+    font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 20px rgba(242,97,156,0.3); margin-top: 0.5rem;
+  }
+  .submit-btn:hover { background: var(--pink-dark); transform: translateY(-1px); box-shadow: 0 10px 28px rgba(242,97,156,0.4); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: linear-gradient(135deg, #5a1f7a 0%, #3a1058 100%);
+    color: white; padding: 5rem 4rem 2.5rem;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem;
+    padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 2.5rem;
+  }
+  .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.7; margin-top: 0.8rem; max-width: 260px; }
+  .footer-slogan { font-family: 'Fraunces', serif; font-style: italic; font-size: 1rem; color: var(--yellow); margin-top: 0.3rem; }
+  .footer-col h4 { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 1.2rem; }
+  .footer-col ul { list-style: none; display: grid; gap: 0.7rem; }
+  .footer-col ul a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.92rem; transition: color 0.2s; }
+  .footer-col ul a:hover { color: var(--pink); }
+  .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.85rem; }
+  .social-links { display: flex; gap: 0.8rem; }
+  .social-link {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 0.95rem; transition: background 0.2s, transform 0.2s;
+  }
+  .social-link:hover { background: var(--pink); transform: translateY(-2px); }
+
+  /* ── RESEARCH STATS ── */
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 1.2rem;
+  }
+
+  .research-card {
+    border-radius: 1.4rem; padding: 2rem;
+    display: flex; flex-direction: column; gap: 1rem;
+    transition: transform 0.3s;
+  }
+  .research-card:hover { transform: translateY(-4px); }
+
+  .rc-pink { background: rgba(242,97,156,0.1); border: 1.5px solid rgba(242,97,156,0.2); }
+  .rc-lav  { background: rgba(231,190,248,0.25); border: 1.5px solid rgba(231,190,248,0.4); }
+  .rc-yellow { background: rgba(237,233,134,0.35); border: 1.5px solid rgba(237,233,134,0.5); }
+  .rc-blue { background: rgba(147,171,217,0.2); border: 1.5px solid rgba(147,171,217,0.35); }
+  .rc-full {
+    grid-column: span 4;
+    background: linear-gradient(135deg, #5a1f7a, #3d1255);
+    color: white;
+    flex-direction: row; align-items: flex-start; gap: 1.5rem;
+  }
+
+  .rc-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; font-weight: 900; line-height: 1;
+    color: var(--pink);
+  }
+  .rc-full .rc-num { color: var(--yellow); }
+
+  .rc-icon { font-size: 2.5rem; flex-shrink: 0; }
+
+  .rc-body p {
+    font-size: 0.92rem; line-height: 1.7;
+    color: var(--text);
+  }
+  .rc-body p strong { color: var(--deep); font-weight: 600; }
+  .rc-full .rc-body p { color: rgba(255,255,255,0.8); }
+  .rc-full .rc-body p strong { color: var(--yellow); }
+
+  .rc-source {
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--text-light); margin-top: 0.5rem;
+  }
+  .rc-full .rc-source { color: rgba(255,255,255,0.4); }
+
+  @media (max-width: 900px) {
+    .research-grid { grid-template-columns: 1fr 1fr; }
+    .rc-full { grid-column: span 2; flex-direction: column; }
+  }
+
+  @media (max-width: 600px) {
+    .research-grid { grid-template-columns: 1fr; }
+    .rc-full { grid-column: span 1; }
+  }
+
+  .hamburger { display: none; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hamburger { display: block; background: none; border: none; cursor: pointer; font-size: 1.4rem; color: var(--deep); }
+    #home { padding: 7rem 1.5rem 4rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-visual { grid-template-columns: 1fr 1fr; }
+    .video-section { padding: 5rem 1.5rem; }
+    .video-section-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    section { padding: 5rem 1.5rem; }
+    .who-inner, .partners-intro, .volunteer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .programs-grid { grid-template-columns: 1fr; }
+    .prog-card.featured { grid-row: auto; }
+    .schools-cta { flex-direction: column; text-align: center; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .impact-band { flex-direction: column; gap: 0; }
+    .impact-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); width: 100%; }
+    .impact-stat:last-child { border-bottom: none; }
+    .form-grid { grid-template-columns: 1fr; }
+    .partner-logos { grid-template-columns: repeat(2,1fr); }
+    .who-cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" style="text-decoration:none; display:flex; align-items:center;">
+    <img src="white.png" alt="NourishU" class="logo-img">
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="who-we-are.html">Who We Are</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#schools">Schools</a></li>
+    <li><a href="#partners">Partners</a></li>
+    <li><a href="#volunteer">Volunteer</a></li>
+    <li><a href="#volunteer" class="nav-cta">Get Involved</a></li>
+  </ul>
+  <button class="hamburger">☰</button>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-blob blob3"></div>
+
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag">Sydney, NSW — For University Students</div>
+      <h1>Fuelling Your<br><em>Future</em></h1>
+      <p class="hero-sub">No student should have to choose between studying and eating. NourishU tackles food insecurity across Sydney's campuses through free meals, food pantries, and community partnerships — so you can focus on what matters.</p>
+      <div class="hero-actions">
+        <a href="#programs" class="btn-primary">Our Programs →</a>
+        <a href="who-we-are.html" class="btn-secondary">Learn More</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="stat-card">
+        <div class="stat-num">53%</div>
+        <div class="stat-label">of students face food insecurity in 2024</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1 in 4</div>
+        <div class="stat-label">students experience severe food insecurity</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">70%</div>
+        <div class="stat-label">report depressive symptoms linked to food insecurity</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2x</div>
+        <div class="stat-label">more likely to drop out if experiencing food insecurity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE ARE -->
+<section id="who">
+  <div class="who-inner">
+    <div class="who-text">
+      <div class="section-tag" style="color:var(--yellow)">Who We Are</div>
+      <h2>Fighting hunger<br>one campus<br><em style="color:var(--pink)">at a time</em></h2>
+      <p>NourishU is a not-for-profit dedicated to ending malnutrition among university students in Sydney. We know that the cost of living crisis, academic stress, and lack of nutritional knowledge combine to leave far too many students struggling just to eat.</p>
+      <p>We believe that <strong>no student should face their future on an empty stomach</strong>. So we show up — with free meals, on-campus pantries, nutrition education, and a network of Sydney food businesses who care just as much as we do.</p>
+      <div class="mission-pills">
+        <span class="pill pill-pink">Free Meals</span>
+        <span class="pill pill-yellow">Food Pantries</span>
+        <span class="pill pill-blue">Nutrition Education</span>
+        <span class="pill pill-lav">Community Partnerships</span>
+        <span class="pill pill-pink">Student Jobs</span>
+      </div>
+    </div>
+    <div class="who-cards">
+      <div class="who-card">
+        <div class="who-card-icon icon-pink">🍱</div>
+        <h3>Free Hot Meal Programs</h3>
+        <p>Hot, nutritious meals distributed on campus multiple times a week — no questions asked.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-card-icon icon-yellow">🛒</div>
+        <h3>Campus Pantries</h3>
+        <p>Walk-in pantry hubs stocked with staples, fresh produce, and essentials — open every day.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-card-icon icon-blue">📚</div>
+        <h3>Nutrition Education</h3>
+        <p>Workshops to help students eat well on a budget — no cooking experience needed.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-card-icon icon-lav">💼</div>
+        <h3>Job Pathways</h3>
+        <p>We connect students with flexible part-time roles at our partner food businesses.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<div class="video-section">
+  <div class="video-section-inner">
+    <div class="video-text">
+      <div class="section-tag">Meet NourishU</div>
+      <h2>See what we're<br>building together</h2>
+      <p>Get a glimpse into the NourishU community — the students we support, the volunteers who show up, and the local businesses making it all possible across Sydney's campuses.</p>
+      <a href="who-we-are.html" class="btn-primary" style="display:inline-flex;">Our full story →</a>
+    </div>
+    <div class="video-frame">
+      <!-- When you have a video, replace this placeholder with either: -->
+      <!-- Option A — your own video file: -->
+      <!-- <video controls src="meet-nourishu.mp4" poster="thumbnail.jpg"></video> -->
+      <!-- Option B — a YouTube embed: -->
+      <!-- <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe> -->
+      <div class="video-placeholder">
+        <div class="play-btn">▶</div>
+        <p>Upload your video here — see the code comments above for instructions</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IMPACT BAND -->
+<div class="impact-band">
+  <div class="impact-stat"><div class="num">4,200+</div><div class="lbl">Meals Served</div></div>
+  <div class="impact-stat"><div class="num">12</div><div class="lbl">Campus Pantries</div></div>
+  <div class="impact-stat"><div class="num">80+</div><div class="lbl">Business Partners</div></div>
+  <div class="impact-stat"><div class="num">4</div><div class="lbl">Sydney Campuses</div></div>
+  <div class="impact-stat"><div class="num">320+</div><div class="lbl">Student Jobs Created</div></div>
+</div>
+
+<!-- STATISTICS SECTION -->
+<section id="stats" style="background: white; padding: 7rem 4rem;">
+  <div style="max-width:640px; margin-bottom:3.5rem;">
+    <div class="section-tag">The Research</div>
+    <h2>The numbers don't lie</h2>
+    <p style="color:var(--text-light); line-height:1.8; font-size:1.05rem;">Food insecurity among Australian university students is not a fringe issue — it is a growing crisis, backed by research. Here is what the data tells us.</p>
+  </div>
+
+  <div class="research-grid">
+
+    <div class="research-card rc-pink">
+      <div class="rc-num">53%</div>
+      <div class="rc-body">
+        <p>of university students experienced food insecurity in 2024 — up from 42% in 2022. That's an 11 percentage point increase in just two years.</p>
+        <div class="rc-source">Australian Student Food Security Study, 2024</div>
+      </div>
+    </div>
+
+    <div class="research-card rc-lav">
+      <div class="rc-num">1 in 4</div>
+      <div class="rc-body">
+        <p>students were experiencing <strong>severe</strong> food insecurity, with diet quality declining sharply as insecurity increased.</p>
+        <div class="rc-source">Australian Student Food Security Study, 2024</div>
+      </div>
+    </div>
+
+    <div class="research-card rc-yellow">
+      <div class="rc-num">70%</div>
+      <div class="rc-body">
+        <p>of food-insecure students reported mild to extremely severe depressive symptoms. Food insecurity was identified as a significant predictor of higher depression scores.</p>
+        <div class="rc-source">Australian Student Wellbeing Report, 2023</div>
+      </div>
+    </div>
+
+    <div class="research-card rc-blue">
+      <div class="rc-num">↑</div>
+      <div class="rc-body">
+        <p>Financial worry triggers psychological distress, which causes physiological responses. When stressed, students crave and consume higher amounts of high-calorie food — worsening nutritional outcomes.</p>
+        <div class="rc-source">Stress & Eating Behaviour Research, 2023</div>
+      </div>
+    </div>
+
+    <div class="research-card rc-full">
+      <div class="rc-icon">🏫</div>
+      <div class="rc-body">
+        <p>Universities often run food pantries to provide students with basic supplies — but researchers agree they also need more <strong>long-term structural supports</strong> for students. Short-term relief is not enough. NourishU is building that longer-term system.</p>
+        <div class="rc-source">University Food Security Framework Review, 2024</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="programs-header">
+    <div>
+      <div class="section-tag">Programs</div>
+      <h2>What we do</h2>
+    </div>
+    <p>Everything we offer is free, stigma-free, and designed around students' real lives — not bureaucratic processes.</p>
+  </div>
+  <div class="programs-grid">
+    <div class="prog-card featured">
+      <div class="prog-badge">⭐ Flagship</div>
+      <div class="prog-icon">🍽️</div>
+      <h3>Free Hot Meal Program</h3>
+      <p>Our flagship program delivers freshly prepared, nutritious hot meals to students on campus several times a week. Partnering with local Sydney restaurants and caterers, every meal is balanced, culturally diverse, and absolutely free. No ID checks. No income verification. Just food.</p>
+    </div>
+    <div class="prog-card card-yellow">
+      <div class="prog-icon">🛒</div>
+      <h3>Campus Pantry</h3>
+      <p>Stocked pantry hubs across our Sydney partner campuses — open before, between, and after classes.</p>
+    </div>
+    <div class="prog-card card-blue">
+      <div class="prog-icon">🥗</div>
+      <h3>Nutrition Workshops</h3>
+      <p>Hands-on workshops with nutritionists and peer mentors to help you eat well on a student budget.</p>
+    </div>
+    <div class="prog-card card-lav">
+      <div class="prog-icon">💼</div>
+      <h3>Job Connect</h3>
+      <p>Our Sydney business partners advertise part-time roles exclusively for NourishU students, with hours built around study.</p>
+    </div>
+    <div class="prog-card card-pink">
+      <div class="prog-icon">📦</div>
+      <h3>Emergency Food Packs</h3>
+      <p>Immediate support for students in crisis — a 3-day food pack delivered discreetly to your campus, same week.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCHOOLS -->
+<section id="schools">
+  <div class="schools-intro">
+    <div class="section-tag">Schools & Universities</div>
+    <h2>Where you'll find us</h2>
+    <p>We're currently active across Sydney's major campuses, with expansion into other cities coming soon. If your university isn't listed — we'd love to hear from you.</p>
+  </div>
+
+  <div class="sydney-banner">
+    <span class="sydney-badge">📍 Currently Active</span>
+    <p>NourishU is live across 4 Sydney university campuses, with more in the pipeline.</p>
+  </div>
+
+  <p class="section-area-label">🟢 Sydney — Active Campuses</p>
+  <div class="schools-grid">
+    <div class="school-card">
+      <div class="school-card-header">
+        <div class="school-avatar" style="background:rgba(242,97,156,0.12); color:var(--pink);">🎓</div>
+        <span class="school-status status-active">● Active</span>
+      </div>
+      <div class="school-card-body">
+        <h3>University of Sydney</h3>
+        <div class="location">📍 Camperdown, NSW</div>
+        <div class="school-services">
+          <span class="svc-tag svc-pink">Hot Meals</span>
+          <span class="svc-tag svc-blue">Pantry</span>
+          <span class="svc-tag svc-lav">Workshops</span>
+          <span class="svc-tag svc-pink">Job Connect</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="school-card">
+      <div class="school-card-header">
+        <div class="school-avatar" style="background:rgba(147,171,217,0.2); color:#2d5ba8;">🎓</div>
+        <span class="school-status status-active">● Active</span>
+      </div>
+      <div class="school-card-body">
+        <h3>UNSW Sydney</h3>
+        <div class="location">📍 Kensington, NSW</div>
+        <div class="school-services">
+          <span class="svc-tag svc-pink">Hot Meals</span>
+          <span class="svc-tag svc-blue">Pantry</span>
+          <span class="svc-tag svc-lav">Emergency Packs</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="school-card">
+      <div class="school-card-header">
+        <div class="school-avatar" style="background:rgba(231,190,248,0.35); color:#7030b0;">🎓</div>
+        <span class="school-status status-active">● Active</span>
+      </div>
+      <div class="school-card-body">
+        <h3>UTS Sydney</h3>
+        <div class="location">📍 Ultimo, NSW</div>
+        <div class="school-services">
+          <span class="svc-tag svc-pink">Hot Meals</span>
+          <span class="svc-tag svc-blue">Pantry</span>
+          <span class="svc-tag svc-pink">Job Connect</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="school-card">
+      <div class="school-card-header">
+        <div class="school-avatar" style="background:rgba(237,233,134,0.35); color:#6a6000;">🎓</div>
+        <span class="school-status status-active">● Active</span>
+      </div>
+      <div class="school-card-body">
+        <h3>Macquarie University</h3>
+        <div class="location">📍 Macquarie Park, NSW</div>
+        <div class="school-services">
+          <span class="svc-tag svc-pink">Hot Meals</span>
+          <span class="svc-tag svc-lav">Workshops</span>
+          <span class="svc-tag svc-blue">Pantry</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="section-area-label">🔵 Elsewhere in Australia — Coming Soon</p>
+  <div class="schools-grid">
+    <div class="school-card coming-soon">
+      <div class="school-card-header">
+        <div class="school-avatar" style="background:rgba(147,171,217,0.15); color:#3a6dbd;">🎓</div>
+        <span class="school-status status-coming">◌ Coming Soon</span>
+      </div>
+      <div class="school-card-body">
+        <h3>University of Melbourne</h3>
+        <div class="location">📍 Parkville, VIC</div>
+        <div class="school-services">
+          <span class="svc-tag svc-grey">Pantry (planned)</span>
+          <span class="svc-tag svc-grey">Hot Meals (planned)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="school-card coming-soon">
+      <div class="school-card-header">
+        <div class="school-avatar" style="background:rgba(231,190,248,0.2); color:#7030b0;">🎓</div>
+        <span class="school-status status-coming">◌ Coming Soon</span>
+      </div>
+      <div class="school-card-body">
+        <h3>QUT Brisbane</h3>
+        <div class="location">📍 Gardens Point, QLD</div>
+        <div class="school-services">
+          <span class="svc-tag svc-grey">In Planning</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="school-card coming-soon">
+      <div class="school-card-header">
+        <div class="school-avatar" style="background:rgba(242,97,156,0.08); color:var(--pink);">🎓</div>
+        <span class="school-status status-coming">◌ Coming Soon</span>
+      </div>
+      <div class="school-card-body">
+        <h3>Monash University</h3>
+        <div class="location">📍 Clayton, VIC</div>
+        <div class="school-services">
+          <span class="svc-tag svc-grey">In Planning</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="school-card coming-soon">
+      <div class="school-card-header">
+        <div class="school-avatar" style="background:rgba(147,171,217,0.12); color:#2d5ba8;">🎓</div>
+        <span class="school-status status-coming">◌ Coming Soon</span>
+      </div>
+      <div class="school-card-body">
+        <h3>University of Adelaide</h3>
+        <div class="location">📍 Adelaide, SA</div>
+        <div class="school-services">
+          <span class="svc-tag svc-grey">In Planning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="schools-cta">
+    <h3>Is your university not on the list? Let's change that.</h3>
+    <a href="mailto:hello@nourishu.org.au" class="btn-primary" style="white-space:nowrap">Partner with us →</a>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners">
+  <div class="section-tag">Business Partners</div>
+  <h2>Better together</h2>
+  <div class="partners-intro">
+    <div>
+      <p>Our partnerships with local Sydney food businesses go both ways. They provide meals, donations, and part-time jobs for students. In return, we give them a platform — showcasing their values to thousands of engaged young consumers across Sydney's campuses.</p>
+      <br>
+      <p>It's not charity. It's community. When local businesses and universities work together, students thrive and businesses grow.</p>
+      <br>
+      <a href="mailto:partners@nourishu.org.au" class="btn-primary" style="display:inline-flex;">Become a Partner →</a>
+    </div>
+    <div class="partner-benefits">
+      <div class="benefit-row">
+        <div class="benefit-icon" style="background:rgba(242,97,156,0.12)">📣</div>
+        <div>
+          <h4>Free Advertising & Exposure</h4>
+          <p>Feature your brand across our campus presence, social channels, and newsletter reaching thousands of Sydney students.</p>
+        </div>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-icon" style="background:rgba(237,233,134,0.3)">👩‍💼</div>
+        <div>
+          <h4>Access to Student Talent</h4>
+          <p>Post part-time roles exclusively to our network — motivated, reliable students seeking flexible work around study.</p>
+        </div>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-icon" style="background:rgba(147,171,217,0.2)">🤝</div>
+        <div>
+          <h4>Community Impact Credit</h4>
+          <p>Be publicly recognised as a business that gives back — building trust and loyalty with a purpose-driven generation.</p>
+        </div>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-icon" style="background:rgba(231,190,248,0.3)">🍕</div>
+        <div>
+          <h4>Reduce Food Waste</h4>
+          <p>Donate surplus food that would otherwise go to waste — we handle collection, storage, and distribution.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="partner-logos">
+    <div class="partner-tile"><div class="emoji">🍜</div><p>Campus Noodle Co.</p></div>
+    <div class="partner-tile"><div class="emoji">☕</div><p>Grounds Coffee</p></div>
+    <div class="partner-tile"><div class="emoji">🥙</div><p>Wrap & Roll</p></div>
+    <div class="partner-tile"><div class="emoji">🍞</div><p>Sourdough Society</p></div>
+    <div class="partner-tile"><div class="emoji">🥗</div><p>Green Bowl Kitchen</p></div>
+    <div class="partner-tile"><div class="emoji">🍱</div><p>Bento Bros</p></div>
+  </div>
+</section>
+
+<!-- VOLUNTEER -->
+<section id="volunteer">
+  <div class="volunteer-grid">
+    <div class="vol-text">
+      <div class="section-tag">Volunteer With Us</div>
+      <h2>Be part of<br>the change</h2>
+      <p>Whether you have two hours a week or two days a month, your time makes a real difference. From packing meals to running workshops to managing social media — there's a role for every skill and every schedule.</p>
+      <p>As a volunteer, you'll build real skills, meet a passionate community, and get the satisfaction of knowing you're fuelling someone's future.</p>
+      <div class="vol-roles">
+        <div class="role-card">
+          <div class="role-icon">🍱</div>
+          <div><h3>Meal Packing & Distribution</h3><p>Help prepare and hand out meals on campus. Physical, social, and deeply rewarding.</p></div>
+        </div>
+        <div class="role-card">
+          <div class="role-icon">🛒</div>
+          <div><h3>Pantry Coordinator</h3><p>Stock shelves, manage inventory, and ensure the pantry is welcoming and accessible.</p></div>
+        </div>
+        <div class="role-card">
+          <div class="role-icon">📣</div>
+          <div><h3>Campus Ambassador</h3><p>Spread the word at your Sydney university — run events, tabling days, and social campaigns.</p></div>
+        </div>
+        <div class="role-card">
+          <div class="role-icon">💻</div>
+          <div><h3>Digital & Creative</h3><p>Help us with design, social media, photography, or content — remotely or on campus.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vol-form">
+      <h3>Sign up to volunteer</h3>
+      <p>We'll match you to a role that fits your skills and availability.</p>
+      <div class="form-grid">
+        <div class="form-row"><label>First Name</label><input type="text" placeholder="Maya"></div>
+        <div class="form-row"><label>Last Name</label><input type="text" placeholder="Singh"></div>
+      </div>
+      <div class="form-row"><label>Email Address</label><input type="email" placeholder="maya@uni.edu.au"></div>
+      <div class="form-row">
+        <label>Your University</label>
+        <select>
+          <option value="">Select your Sydney university…</option>
+          <option>University of Sydney</option>
+          <option>UNSW Sydney</option>
+          <option>UTS Sydney</option>
+          <option>Macquarie University</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Roles I'm interested in</label>
+        <div class="checkbox-group">
+          <label class="checkbox-item"><input type="checkbox"> Meal Distribution</label>
+          <label class="checkbox-item"><input type="checkbox"> Pantry Coordinator</label>
+          <label class="checkbox-item"><input type="checkbox"> Campus Ambassador</label>
+          <label class="checkbox-item"><input type="checkbox"> Digital & Creative</label>
+          <label class="checkbox-item"><input type="checkbox"> Fundraising</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Anything else? (optional)</label>
+        <textarea placeholder="Tell us about your availability, skills, or why you'd like to volunteer…"></textarea>
+      </div>
+      <button class="submit-btn" onclick="alert('Thanks for signing up! We\'ll be in touch soon 💖')">Apply to Volunteer ✦</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="white.png" alt="NourishU" style="height:4.5rem; width:auto; mix-blend-mode:screen; opacity:0.9;">
+      <div class="footer-slogan">Fuelling your future</div>
+      <p>A not-for-profit dedicated to ending food insecurity among Sydney university students. Every student deserves to eat well.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="who-we-are.html">Who We Are</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#schools">Schools</a></li>
+        <li><a href="#partners">Partners</a></li>
+        <li><a href="#volunteer">Volunteer</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get Help</h4>
+      <ul>
+        <li><a href="#">Find a Pantry</a></li>
+        <li><a href="#">Meal Schedule</a></li>
+        <li><a href="#">Emergency Packs</a></li>
+        <li><a href="#">Student Resources</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:hello@nourishu.org.au">hello@nourishu.org.au</a></li>
+        <li><a href="mailto:partners@nourishu.org.au">partners@nourishu.org.au</a></li>
+        <li><a href="#">ABN: 00 000 000 000</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 NourishU. All rights reserved. Not-for-profit registered in Australia.</p>
+    <div class="social-links">
+      <a class="social-link" href="#" title="Instagram">📸</a>
+      <a class="social-link" href="#" title="TikTok">🎵</a>
+      <a class="social-link" href="#" title="LinkedIn">💼</a>
+      <a class="social-link" href="#" title="Facebook">📘</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
